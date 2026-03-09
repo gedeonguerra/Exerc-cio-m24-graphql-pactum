@@ -1,0 +1,1009 @@
+{
+  "stats": {
+    "suites": 11,
+    "tests": 10,
+    "passes": 0,
+    "pending": 0,
+    "failures": 10,
+    "start": "2026-03-07T22:09:20.209Z",
+    "end": "2026-03-07T22:09:52.543Z",
+    "duration": 32334,
+    "testsRegistered": 27,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 5,
+    "hasOther": true,
+    "skipped": 17,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "11b0dc8f-e580-4077-9451-2ff1e0cdf96e",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bf43ae19-b2d1-4469-843b-6de1f17da4c5",
+          "title": "Categorias - addCategory",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\categories\\addCategory.test.js",
+          "file": "\\test\\categories\\addCategory.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve criar uma categoria com sucesso",
+              "fullTitle": "Categorias - addCategory Deve criar uma categoria com sucesso",
+              "timedOut": false,
+              "duration": 2319,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const response = await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddCategory($input: CategoryInput!) {\n      addCategory(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Categoria Teste Automatizado',\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    data: {\n      addCategory: {\n        name: 'Categoria Teste Automatizado',\n      },\n    },\n  })\n  .returns('data.addCategory.id');\nstash.addDataStore('categoryId', response);",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "e80156f8-30ac-4b21-8849-7006b6e8ffbf",
+              "parentUUID": "bf43ae19-b2d1-4469-843b-6de1f17da4c5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve retornar id e name ao criar categoria",
+              "fullTitle": "Categorias - addCategory Deve retornar id e name ao criar categoria",
+              "timedOut": false,
+              "duration": 2148,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddCategory($input: CategoryInput!) {\n      addCategory(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Categoria Para Deletar',\n    },\n  })\n  .expectStatus(200)\n  .expectJsonSchema({\n    type: 'object',\n    properties: {\n      data: {\n        type: 'object',\n        properties: {\n          addCategory: {\n            type: 'object',\n            required: ['id', 'name'],\n            properties: {\n              id: { type: 'string' },\n              name: { type: 'string' },\n            },\n          },\n        },\n      },\n    },\n  });",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "1f96544b-b582-4842-9430-8ab7a5f6cb2b",
+              "parentUUID": "bf43ae19-b2d1-4469-843b-6de1f17da4c5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve retornar erro ao criar categoria sem nome",
+              "fullTitle": "Categorias - addCategory Deve retornar erro ao criar categoria sem nome",
+              "timedOut": false,
+              "duration": 2127,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddCategory($input: CategoryInput!) {\n      addCategory(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: '',\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "28b914d3-8c67-4ff6-98ee-3a0231518919",
+              "parentUUID": "bf43ae19-b2d1-4469-843b-6de1f17da4c5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "e80156f8-30ac-4b21-8849-7006b6e8ffbf",
+            "1f96544b-b582-4842-9430-8ab7a5f6cb2b",
+            "28b914d3-8c67-4ff6-98ee-3a0231518919"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6594,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "3d8b93ed-5546-4e41-9aca-fba6b7bd2910",
+          "title": "Categorias - deleteCategory",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\categories\\deleteCategory.test.js",
+          "file": "\\test\\categories\\deleteCategory.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve deletar uma categoria existente com sucesso",
+              "fullTitle": "Categorias - deleteCategory Deve deletar uma categoria existente com sucesso",
+              "timedOut": false,
+              "duration": 2149,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const categoryId = await createCategory('Categoria Para Deletar 1');\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteCategory($id: ID!) {\n      deleteCategory(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: categoryId })\n  .expectStatus(200)\n  .expectJsonLike({\n    data: {\n      deleteCategory: true,\n    },\n  });",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "d7d4531c-a4b9-4933-9583-10cb7b044813",
+              "parentUUID": "3d8b93ed-5546-4e41-9aca-fba6b7bd2910",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve retornar schema correto ao deletar categoria",
+              "fullTitle": "Categorias - deleteCategory Deve retornar schema correto ao deletar categoria",
+              "timedOut": false,
+              "duration": 2143,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const categoryId = await createCategory('Categoria Para Deletar Schema');\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteCategory($id: ID!) {\n      deleteCategory(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: categoryId })\n  .expectStatus(200)\n  .expectJsonSchema({\n    type: 'object',\n    properties: {\n      data: {\n        type: 'object',\n        properties: {\n          deleteCategory: {\n            type: 'boolean',\n          },\n        },\n        required: ['deleteCategory'],\n      },\n    },\n    required: ['data'],\n  });",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "ac33f542-ac6f-4bb9-a2fa-5b45c7e24fd3",
+              "parentUUID": "3d8b93ed-5546-4e41-9aca-fba6b7bd2910",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve retornar erro ao deletar categoria com ID inválido",
+              "fullTitle": "Categorias - deleteCategory Deve retornar erro ao deletar categoria com ID inválido",
+              "timedOut": false,
+              "duration": 2137,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteCategory($id: ID!) {\n      deleteCategory(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: '999999999' })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "124b2287-985f-463a-a61d-4d895d3dfaf7",
+              "parentUUID": "3d8b93ed-5546-4e41-9aca-fba6b7bd2910",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d7d4531c-a4b9-4933-9583-10cb7b044813",
+            "ac33f542-ac6f-4bb9-a2fa-5b45c7e24fd3",
+            "124b2287-985f-463a-a61d-4d895d3dfaf7"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6429,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "0cacbf12-f7df-413f-80d8-33f42ae48cff",
+          "title": "Categorias - editCategory",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\categories\\editCategory.test.js",
+          "file": "\\test\\categories\\editCategory.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"Deve editar uma categoria existente com sucesso\"",
+              "fullTitle": "Categorias - editCategory \"before all\" hook for \"Deve editar uma categoria existente com sucesso\"",
+              "timedOut": false,
+              "duration": 2137,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "categoryId = await createCategory('Categoria Original');",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "b650f9cb-a2d8-4ecd-8156-c7f0a1353567",
+              "parentUUID": "0cacbf12-f7df-413f-80d8-33f42ae48cff",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve editar uma categoria existente com sucesso",
+              "fullTitle": "Categorias - editCategory Deve editar uma categoria existente com sucesso",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditCategory($id: ID!, $input: CategoryInput!) {\n      editCategory(id: $id, input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: categoryId,\n    input: {\n      name: 'Categoria Editada',\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    data: {\n      editCategory: {\n        id: categoryId,\n        name: 'Categoria Editada',\n      },\n    },\n  });",
+              "err": {},
+              "uuid": "f4f29e8c-1f77-4d13-8cde-7ddd4381825f",
+              "parentUUID": "0cacbf12-f7df-413f-80d8-33f42ae48cff",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar o schema correto ao editar categoria",
+              "fullTitle": "Categorias - editCategory Deve retornar o schema correto ao editar categoria",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const newId = await createCategory('Categoria Schema Edit');\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditCategory($id: ID!, $input: CategoryInput!) {\n      editCategory(id: $id, input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: newId,\n    input: { name: 'Categoria Schema Editada' },\n  })\n  .expectStatus(200)\n  .expectJsonSchema({\n    type: 'object',\n    properties: {\n      data: {\n        type: 'object',\n        properties: {\n          editCategory: {\n            type: 'object',\n            required: ['id', 'name'],\n            properties: {\n              id: { type: 'string' },\n              name: { type: 'string' },\n            },\n          },\n        },\n      },\n    },\n  });",
+              "err": {},
+              "uuid": "80c13d4e-dac1-4831-bb2a-813e019d1993",
+              "parentUUID": "0cacbf12-f7df-413f-80d8-33f42ae48cff",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar erro ao editar categoria com ID inexistente",
+              "fullTitle": "Categorias - editCategory Deve retornar erro ao editar categoria com ID inexistente",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditCategory($id: ID!, $input: CategoryInput!) {\n      editCategory(id: $id, input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: '999999999',\n    input: { name: 'Nome Inválido' },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {},
+              "uuid": "7e529c5d-2f91-424d-a5a4-ce0cbb2a62c6",
+              "parentUUID": "0cacbf12-f7df-413f-80d8-33f42ae48cff",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "f4f29e8c-1f77-4d13-8cde-7ddd4381825f",
+            "80c13d4e-dac1-4831-bb2a-813e019d1993",
+            "7e529c5d-2f91-424d-a5a4-ce0cbb2a62c6"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "9e05363c-ad84-479c-b51f-3a5be05ba924",
+          "title": "Contratos - Categorias",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\category.contract.test.js",
+          "file": "\\test\\contracts\\category.contract.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "658cdcbd-30fa-48b1-9d68-b6bb2e743587",
+              "title": "Contrato: addCategory",
+              "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\category.contract.test.js",
+              "file": "\\test\\contracts\\category.contract.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve validar o contrato da resposta de addCategory",
+                  "fullTitle": "Contratos - Categorias Contrato: addCategory Deve validar o contrato da resposta de addCategory",
+                  "timedOut": false,
+                  "duration": 2153,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddCategory($input: CategoryInput!) {\n      addCategory(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: { name: 'Categoria Contrato Test' },\n  })\n  .expectStatus(200)\n  .expectJsonSchema(addCategorySchema);",
+                  "err": {
+                    "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                    "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                    "diff": null
+                  },
+                  "uuid": "f0af40bf-959a-41c3-850f-f36a20ff935d",
+                  "parentUUID": "658cdcbd-30fa-48b1-9d68-b6bb2e743587",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "O campo id deve ser uma string não vazia",
+                  "fullTitle": "Contratos - Categorias Contrato: addCategory O campo id deve ser uma string não vazia",
+                  "timedOut": false,
+                  "duration": 2139,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddCategory($input: CategoryInput!) {\n      addCategory(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: { name: 'Categoria ID Contrato' },\n  })\n  .expectStatus(200)\n  .expect((ctx) => {\n    const id = ctx.res.body.data.addCategory.id;\n    if (!id || id.trim() === '') {\n      throw new Error('O campo id não pode ser vazio');\n    }\n  });",
+                  "err": {
+                    "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                    "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                    "diff": null
+                  },
+                  "uuid": "c2f50339-df1d-43d8-8c67-e98d144ed8f9",
+                  "parentUUID": "658cdcbd-30fa-48b1-9d68-b6bb2e743587",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "f0af40bf-959a-41c3-850f-f36a20ff935d",
+                "c2f50339-df1d-43d8-8c67-e98d144ed8f9"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 4292,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "19db621a-b11d-403b-acd0-f636a58c6327",
+              "title": "Contrato: editCategory",
+              "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\category.contract.test.js",
+              "file": "\\test\\contracts\\category.contract.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve validar o contrato da resposta de editCategory",
+                  "fullTitle": "Contratos - Categorias Contrato: editCategory Deve validar o contrato da resposta de editCategory",
+                  "timedOut": false,
+                  "duration": 2143,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const categoryId = await createCategory('Categoria Edit Contrato');\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditCategory($id: ID!, $input: CategoryInput!) {\n      editCategory(id: $id, input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: categoryId,\n    input: { name: 'Categoria Editada Contrato' },\n  })\n  .expectStatus(200)\n  .expectJsonSchema(editCategorySchema);",
+                  "err": {
+                    "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                    "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                    "diff": null
+                  },
+                  "uuid": "a2a6ff3a-1903-4e38-8368-a9812303349c",
+                  "parentUUID": "19db621a-b11d-403b-acd0-f636a58c6327",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "a2a6ff3a-1903-4e38-8368-a9812303349c"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 2143,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "cc3aaee6-e14c-4fc5-9b7e-bfdf90e50877",
+              "title": "Contrato: deleteCategory",
+              "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\category.contract.test.js",
+              "file": "\\test\\contracts\\category.contract.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve validar o contrato da resposta de deleteCategory",
+                  "fullTitle": "Contratos - Categorias Contrato: deleteCategory Deve validar o contrato da resposta de deleteCategory",
+                  "timedOut": false,
+                  "duration": 2141,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const categoryId = await createCategory('Categoria Delete Contrato');\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteCategory($id: ID!) {\n      deleteCategory(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: categoryId })\n  .expectStatus(200)\n  .expectJsonSchema(deleteCategorySchema);",
+                  "err": {
+                    "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                    "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                    "diff": null
+                  },
+                  "uuid": "a6664270-28f0-4a32-a2c0-07c89155391c",
+                  "parentUUID": "cc3aaee6-e14c-4fc5-9b7e-bfdf90e50877",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "a6664270-28f0-4a32-a2c0-07c89155391c"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 2141,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "e3151de0-c510-4236-9271-3e8c47a1c73c",
+          "title": "Contratos - Produtos",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\product.contract.test.js",
+          "file": "\\test\\contracts\\product.contract.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Contratos - Produtos\"",
+              "fullTitle": "Contratos - Produtos \"before all\" hook in \"Contratos - Produtos\"",
+              "timedOut": false,
+              "duration": 2135,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "categoryId = await createCategory('Categoria Contrato Produtos');",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "eb42daf2-2e7b-48f6-8426-95ccdf8a6ba5",
+              "parentUUID": "e3151de0-c510-4236-9271-3e8c47a1c73c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "ddaf96b3-d583-4fb4-bb92-f3dbe36e3642",
+              "title": "Contrato: addProduct",
+              "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\product.contract.test.js",
+              "file": "\\test\\contracts\\product.contract.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve validar o contrato da resposta de addProduct",
+                  "fullTitle": "Contratos - Produtos Contrato: addProduct Deve validar o contrato da resposta de addProduct",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddProduct($input: ProductInput!) {\n      addProduct(input: $input) {\n        id\n        name\n        price\n        category {\n          id\n          name\n        }\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Produto Contrato Test',\n      price: 199.99,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonSchema(addProductSchema);",
+                  "err": {},
+                  "uuid": "3f8781f5-2b3a-4294-b43e-eb491067b804",
+                  "parentUUID": null,
+                  "isHook": false,
+                  "skipped": true
+                },
+                {
+                  "title": "O campo price deve ser um número positivo",
+                  "fullTitle": "Contratos - Produtos Contrato: addProduct O campo price deve ser um número positivo",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddProduct($input: ProductInput!) {\n      addProduct(input: $input) {\n        id\n        name\n        price\n        category { id name }\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Produto Price Contrato',\n      price: 299.5,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expect((ctx) => {\n    const price = ctx.res.body.data.addProduct.price;\n    if (typeof price !== 'number' || price < 0) {\n      throw new Error('O campo price deve ser um número não negativo');\n    }\n  });",
+                  "err": {},
+                  "uuid": "ee219dc2-1b02-4854-8a07-7bf04b239aff",
+                  "parentUUID": null,
+                  "isHook": false,
+                  "skipped": true
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [
+                "3f8781f5-2b3a-4294-b43e-eb491067b804",
+                "ee219dc2-1b02-4854-8a07-7bf04b239aff"
+              ],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "280ee616-79c2-41b7-836e-b473cf9f2130",
+              "title": "Contrato: editProduct",
+              "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\product.contract.test.js",
+              "file": "\\test\\contracts\\product.contract.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve validar o contrato da resposta de editProduct",
+                  "fullTitle": "Contratos - Produtos Contrato: editProduct Deve validar o contrato da resposta de editProduct",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const productId = await createProduct('Produto Edit Contrato', 55.0, categoryId);\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditProduct($id: ID!, $input: ProductInput!) {\n      editProduct(id: $id, input: $input) {\n        id\n        name\n        price\n        category {\n          id\n          name\n        }\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: productId,\n    input: {\n      name: 'Produto Editado Contrato',\n      price: 88.0,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonSchema(editProductSchema);",
+                  "err": {},
+                  "uuid": "5a3326d0-10d9-4d2f-83c5-14563c77c057",
+                  "parentUUID": null,
+                  "isHook": false,
+                  "skipped": true
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [
+                "5a3326d0-10d9-4d2f-83c5-14563c77c057"
+              ],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "8f5740c4-937d-411d-a3ad-e09fe67c5da2",
+              "title": "Contrato: deleteProduct",
+              "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\contracts\\product.contract.test.js",
+              "file": "\\test\\contracts\\product.contract.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve validar o contrato da resposta de deleteProduct",
+                  "fullTitle": "Contratos - Produtos Contrato: deleteProduct Deve validar o contrato da resposta de deleteProduct",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const productId = await createProduct('Produto Delete Contrato', 33.0, categoryId);\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteProduct($id: ID!) {\n      deleteProduct(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: productId })\n  .expectStatus(200)\n  .expectJsonSchema(deleteProductSchema);",
+                  "err": {},
+                  "uuid": "dd18d3b7-b48d-480a-ade6-b1a589fa99c1",
+                  "parentUUID": null,
+                  "isHook": false,
+                  "skipped": true
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [
+                "dd18d3b7-b48d-480a-ade6-b1a589fa99c1"
+              ],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "015e3316-ddfd-438e-ab10-21251fb547b7",
+          "title": "Produtos - addProduct",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\products\\addProduct.test.js",
+          "file": "\\test\\products\\addProduct.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"Deve criar um produto com sucesso\"",
+              "fullTitle": "Produtos - addProduct \"before all\" hook for \"Deve criar um produto com sucesso\"",
+              "timedOut": false,
+              "duration": 2155,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "categoryId = await createCategory('Categoria Produto Teste');",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "51928ea2-b072-4886-8939-94ccc23320ae",
+              "parentUUID": "015e3316-ddfd-438e-ab10-21251fb547b7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve criar um produto com sucesso",
+              "fullTitle": "Produtos - addProduct Deve criar um produto com sucesso",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddProduct($input: ProductInput!) {\n      addProduct(input: $input) {\n        id\n        name\n        price\n        category {\n          id\n          name\n        }\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Produto Teste Automatizado',\n      price: 99.99,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    data: {\n      addProduct: {\n        name: 'Produto Teste Automatizado',\n        price: 99.99,\n      },\n    },\n  });",
+              "err": {},
+              "uuid": "a6170525-c759-480f-8f66-5358fd12973c",
+              "parentUUID": "015e3316-ddfd-438e-ab10-21251fb547b7",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar id, name, price e category ao criar produto",
+              "fullTitle": "Produtos - addProduct Deve retornar id, name, price e category ao criar produto",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddProduct($input: ProductInput!) {\n      addProduct(input: $input) {\n        id\n        name\n        price\n        category {\n          id\n          name\n        }\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Produto Schema Teste',\n      price: 149.9,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonSchema({\n    type: 'object',\n    properties: {\n      data: {\n        type: 'object',\n        properties: {\n          addProduct: {\n            type: 'object',\n            required: ['id', 'name', 'price', 'category'],\n            properties: {\n              id: { type: 'string' },\n              name: { type: 'string' },\n              price: { type: 'number' },\n              category: {\n                type: 'object',\n                required: ['id', 'name'],\n                properties: {\n                  id: { type: 'string' },\n                  name: { type: 'string' },\n                },\n              },\n            },\n          },\n        },\n      },\n    },\n  });",
+              "err": {},
+              "uuid": "cc2dd15f-7052-4486-ab01-3057c378def8",
+              "parentUUID": "015e3316-ddfd-438e-ab10-21251fb547b7",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar erro ao criar produto sem nome",
+              "fullTitle": "Produtos - addProduct Deve retornar erro ao criar produto sem nome",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddProduct($input: ProductInput!) {\n      addProduct(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: '',\n      price: 50.0,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {},
+              "uuid": "cb0e5ebc-e36e-480a-b2d9-3a368fffa6ac",
+              "parentUUID": "015e3316-ddfd-438e-ab10-21251fb547b7",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar erro ao criar produto com categoria inexistente",
+              "fullTitle": "Produtos - addProduct Deve retornar erro ao criar produto com categoria inexistente",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation AddProduct($input: ProductInput!) {\n      addProduct(input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    input: {\n      name: 'Produto Categoria Inválida',\n      price: 50.0,\n      category_id: '999999999',\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {},
+              "uuid": "e9261286-b133-4c54-9adc-c5271740d05a",
+              "parentUUID": "015e3316-ddfd-438e-ab10-21251fb547b7",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "a6170525-c759-480f-8f66-5358fd12973c",
+            "cc2dd15f-7052-4486-ab01-3057c378def8",
+            "cb0e5ebc-e36e-480a-b2d9-3a368fffa6ac",
+            "e9261286-b133-4c54-9adc-c5271740d05a"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "94ecde40-d09e-45af-a927-acda95929362",
+          "title": "Produtos - deleteProduct",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\products\\deleteProduct.test.js",
+          "file": "\\test\\products\\deleteProduct.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"Deve deletar um produto existente com sucesso\"",
+              "fullTitle": "Produtos - deleteProduct \"before all\" hook for \"Deve deletar um produto existente com sucesso\"",
+              "timedOut": false,
+              "duration": 2137,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "categoryId = await createCategory('Categoria Delete Produto');",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "56da1a3b-ead5-49d4-9a86-c4f1d4680f4f",
+              "parentUUID": "94ecde40-d09e-45af-a927-acda95929362",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve deletar um produto existente com sucesso",
+              "fullTitle": "Produtos - deleteProduct Deve deletar um produto existente com sucesso",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const productId = await createProduct('Produto Para Deletar 1', 50.0, categoryId);\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteProduct($id: ID!) {\n      deleteProduct(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: productId })\n  .expectStatus(200)\n  .expectJsonLike({\n    data: {\n      deleteProduct: true,\n    },\n  });",
+              "err": {},
+              "uuid": "59af51ff-d8be-40d3-ab3d-58d2e6c411e3",
+              "parentUUID": "94ecde40-d09e-45af-a927-acda95929362",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar schema correto ao deletar produto",
+              "fullTitle": "Produtos - deleteProduct Deve retornar schema correto ao deletar produto",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const productId = await createProduct('Produto Delete Schema', 45.0, categoryId);\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteProduct($id: ID!) {\n      deleteProduct(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: productId })\n  .expectStatus(200)\n  .expectJsonSchema({\n    type: 'object',\n    properties: {\n      data: {\n        type: 'object',\n        required: ['deleteProduct'],\n        properties: {\n          deleteProduct: {\n            type: 'boolean',\n          },\n        },\n      },\n    },\n    required: ['data'],\n  });",
+              "err": {},
+              "uuid": "73fd64da-d0e1-4af5-96ae-7b8677a5c9f9",
+              "parentUUID": "94ecde40-d09e-45af-a927-acda95929362",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar erro ao deletar produto com ID inválido",
+              "fullTitle": "Produtos - deleteProduct Deve retornar erro ao deletar produto com ID inválido",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation DeleteProduct($id: ID!) {\n      deleteProduct(id: $id)\n    }\n  `)\n  .withGraphQLVariables({ id: '999999999' })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {},
+              "uuid": "0a14c40d-d5c7-4506-94ca-9e5b155cf1dc",
+              "parentUUID": "94ecde40-d09e-45af-a927-acda95929362",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "59af51ff-d8be-40d3-ab3d-58d2e6c411e3",
+            "73fd64da-d0e1-4af5-96ae-7b8677a5c9f9",
+            "0a14c40d-d5c7-4506-94ca-9e5b155cf1dc"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "6a78a439-7aea-4266-abbe-de81c32a08b5",
+          "title": "Produtos - editProduct",
+          "fullFile": "C:\\Users\\User\\Desktop\\Nova pasta\\m24-graphql-pactum\\test\\products\\editProduct.test.js",
+          "file": "\\test\\products\\editProduct.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook for \"Deve editar um produto existente com sucesso\"",
+              "fullTitle": "Produtos - editProduct \"before all\" hook for \"Deve editar um produto existente com sucesso\"",
+              "timedOut": false,
+              "duration": 2144,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "categoryId = await createCategory('Categoria Edit Produto');\nproductId = await createProduct('Produto Para Editar', 75.0, categoryId);",
+              "err": {
+                "message": "Error: connect ECONNREFUSED 18.230.155.21:443",
+                "estack": "Error: connect ECONNREFUSED 18.230.155.21:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)",
+                "diff": null
+              },
+              "uuid": "48ad737d-69da-4314-b248-2360cb1302d1",
+              "parentUUID": "6a78a439-7aea-4266-abbe-de81c32a08b5",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve editar um produto existente com sucesso",
+              "fullTitle": "Produtos - editProduct Deve editar um produto existente com sucesso",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditProduct($id: ID!, $input: ProductInput!) {\n      editProduct(id: $id, input: $input) {\n        id\n        name\n        price\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: productId,\n    input: {\n      name: 'Produto Editado',\n      price: 120.0,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    data: {\n      editProduct: {\n        id: productId,\n        name: 'Produto Editado',\n        price: 120.0,\n      },\n    },\n  });",
+              "err": {},
+              "uuid": "7116f215-0206-4901-894e-9db196e20440",
+              "parentUUID": "6a78a439-7aea-4266-abbe-de81c32a08b5",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar schema correto ao editar produto",
+              "fullTitle": "Produtos - editProduct Deve retornar schema correto ao editar produto",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const newProductId = await createProduct('Produto Schema Edit', 60.0, categoryId);\nawait spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditProduct($id: ID!, $input: ProductInput!) {\n      editProduct(id: $id, input: $input) {\n        id\n        name\n        price\n        category {\n          id\n          name\n        }\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: newProductId,\n    input: {\n      name: 'Produto Schema Editado',\n      price: 80.0,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonSchema({\n    type: 'object',\n    properties: {\n      data: {\n        type: 'object',\n        properties: {\n          editProduct: {\n            type: 'object',\n            required: ['id', 'name', 'price', 'category'],\n            properties: {\n              id: { type: 'string' },\n              name: { type: 'string' },\n              price: { type: 'number' },\n              category: {\n                type: 'object',\n                required: ['id', 'name'],\n              },\n            },\n          },\n        },\n      },\n    },\n  });",
+              "err": {},
+              "uuid": "a3035a82-019c-4619-8a05-df6c3f803da2",
+              "parentUUID": "6a78a439-7aea-4266-abbe-de81c32a08b5",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Deve retornar erro ao editar produto com ID inválido",
+              "fullTitle": "Produtos - editProduct Deve retornar erro ao editar produto com ID inválido",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(BASE_URL)\n  .withGraphQLQuery(`\n    mutation EditProduct($id: ID!, $input: ProductInput!) {\n      editProduct(id: $id, input: $input) {\n        id\n        name\n      }\n    }\n  `)\n  .withGraphQLVariables({\n    id: '999999999',\n    input: {\n      name: 'Produto Inválido',\n      price: 10.0,\n      category_id: categoryId,\n    },\n  })\n  .expectStatus(200)\n  .expectJsonLike({\n    errors: [{}],\n  });",
+              "err": {},
+              "uuid": "c60b2c4a-0fb5-4ab8-a5f5-256a06bea6db",
+              "parentUUID": "6a78a439-7aea-4266-abbe-de81c32a08b5",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "7116f215-0206-4901-894e-9db196e20440",
+            "a3035a82-019c-4619-8a05-df6c3f803da2",
+            "c60b2c4a-0fb5-4ab8-a5f5-256a06bea6db"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 30000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "[object Object]": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
