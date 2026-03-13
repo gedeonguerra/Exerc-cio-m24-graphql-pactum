@@ -1,0 +1,53 @@
+name: Testes + Publicar Relatório
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Executar Testes e Publicar Relatório
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes
+        run: npm test
+        continue-on-error: true  # garante que o relatório seja publicado mesmo com falhas
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload do relatório como artefato de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports  # pasta gerada pelo mochawesome (conforme .mocharc.js)
+
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Exibir URL do relatório
+        run: echo "Relatório publicado em ${{ steps.deployment.outputs.page_url }}"
